@@ -3,7 +3,15 @@ source 'https://rubygems.org'
 #############################################################
 # Non-Default Gems Added To Project
 
+# Template for auth
 gem 'clearance'
+
+# Postgresql
+gem 'pg', '~>0.18.0'
+
+# ActiveRecord
+gem 'activerecord'
+
 #############################################################
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
