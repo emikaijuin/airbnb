@@ -3,14 +3,14 @@ source 'https://rubygems.org'
 #############################################################
 # Non-Default Gems Added To Project
 
-# Template for auth
 gem 'clearance'
 
-# Postgresql
+# Postgresql version downgraded to be compatible with ActiveRecord
 gem 'pg', '~>0.18.0'
 
-# ActiveRecord
 gem 'activerecord'
+
+gem 'figaro'
 
 #############################################################
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
