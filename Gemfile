@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-#############################################################
+##########################################################################
 # Non-Default Gems Added To Project
 
 gem 'clearance'
@@ -12,11 +12,13 @@ gem 'activerecord'
 
 gem 'figaro'
 
+gem 'omniauth'
+
 gem 'omniauth-facebook'
 
 gem 'heroku'
 
-#############################################################
+############################################################################
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use SCSS for stylesheets
