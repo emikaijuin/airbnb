@@ -18,6 +18,8 @@ gem 'omniauth-facebook'
 
 gem 'heroku'
 
+gem 'byebug'
+
 ############################################################################
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
