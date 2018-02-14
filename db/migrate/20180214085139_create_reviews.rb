@@ -4,7 +4,7 @@ class CreateReviews < ActiveRecord::Migration
       t.integer :rating
       t.string :text
     end
-    add_foreign_key :reviews, :users
-    add_foreign_key :reviews, :listings
+    # add_foreign_key :reviews, :users
+    # add_foreign_key :reviews, :listings
   end
 end

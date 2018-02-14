@@ -5,6 +5,6 @@ class CreateAmenities < ActiveRecord::Migration
       t.boolean :shampoo
       t.boolean :breakfast
     end
-    add_foreign_key :amenities, :listings
+    # add_foreign_key :amenities, :listings
   end
 end

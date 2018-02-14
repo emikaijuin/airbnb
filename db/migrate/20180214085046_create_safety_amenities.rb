@@ -4,6 +4,6 @@ class CreateSafetyAmenities < ActiveRecord::Migration
       t.boolean :fire_extinguisher
       t.boolean :carbon_monoxide_detector
     end
-    add_foreign_key :safety_amenities, :listings
+    # add_foreign_key :safety_amenities, :listings
   end
 end

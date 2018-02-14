@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213090929) do
+ActiveRecord::Schema.define(version: 20180214090236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "amenities", force: :cascade do |t|
+    t.boolean "wifi"
+    t.boolean "shampoo"
+    t.boolean "breakfast"
+  end
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -26,6 +32,36 @@ ActiveRecord::Schema.define(version: 20180213090929) do
   end
 
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
+
+  create_table "keyword_listings", force: :cascade do |t|
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.string "keyword"
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+  end
+
+  create_table "property_subtypes", force: :cascade do |t|
+    t.string "subtype"
+  end
+
+  create_table "property_types", force: :cascade do |t|
+    t.string "type"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string  "text"
+  end
+
+  create_table "safety_amenities", force: :cascade do |t|
+    t.boolean "fire_extinguisher"
+    t.boolean "carbon_monoxide_detector"
+  end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                     null: false
