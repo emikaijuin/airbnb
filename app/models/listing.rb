@@ -6,4 +6,12 @@ class Listing < ActiveRecord::Base
         # method to return true or false if listing is available for selected date range
     end
     
+    def host
+      if self.user_id == nil
+        "Mystery house!"
+      else
+        User.find(self.user_id).first_name
+      end
+    end
+    
 end
