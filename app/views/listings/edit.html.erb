@@ -1,5 +1,6 @@
-<h4>You reached the edit page for: </h4>
+<h3>Edit listing</h3>
 
-<div>
-  <%= Listing.find(params[:id]) %>
-</div>
+<%= form_for @listing, url: {action: "update"} do |f| %>
+  <%= render '/listings/form', f: f %>
+<% end %>
+
