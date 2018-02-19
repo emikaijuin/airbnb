@@ -1,0 +1,9 @@
+  <div class="listing-container">
+    <p><strong><%= listing.title %></strong></p>
+    <p><%= listing.description %></p>
+    <p>Host: <%= listing.host %></p>
+
+    <% if url_for(:only_path => true) == "/listings" %>
+     <%= link_to "View more", listing_path(listing.id) %>
+    <% end %>
+  </div>
