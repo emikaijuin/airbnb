@@ -12,7 +12,9 @@ class UsersController < Clearance::UsersController
   end
   
   def edit
-      redirect_to 'welcome#index'
-      flash = "You have logged in"
   end
+  
+  def show
+  end
+  
 end

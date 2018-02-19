@@ -1,0 +1,8 @@
+<h3>Viewing all listings</h3>
+
+<%= signed_in? ? (link_to "Add a new listing!", "/listings/new") : (link_to "Sign in to add a listing!", "/sign_in") %>
+
+<% @listings.each do |listing| %>
+  <%= render "/listings/detail", listing: listing %>
+<% end %>
+

@@ -3,8 +3,22 @@
 <head>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
 </head>
 <body>
+  <!--FACEBOOK SDK-->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&autoLogAppEvents=1&version=v2.12&appId=1040839342723303';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <!--FACEBOOK SDK-->
+  
+  <!--SIGN UP/LOG IN/SIGN OUT-->
   <div id="header">
     <% if signed_in? -%>
       <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
@@ -12,13 +26,25 @@
       <%= link_to t(".sign_in"), sign_in_path %>
     <% end -%>
   </div>
+  <!--SIGN UP/LOG IN/SIGN OUT-->
+
 
   <div id="flash">
     <% flash.each do |key, value| -%>
       <div id="flash_<%= key %>"><%=h value %></div>
     <% end %>
   </div>
-
+  
+  <div id="profile">
+    <% if signed_in? %>
+      <%= link_to "View Profile", "/users/show" %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= link_to "Home", root_url %>
+  </div>
+  
   <%= yield %>
 </body>
 </html>
