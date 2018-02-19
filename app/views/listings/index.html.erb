@@ -3,12 +3,6 @@
 <%= signed_in? ? (link_to "Add a new listing!", "/listings/new") : (link_to "Sign in to add a listing!", "/sign_in") %>
 
 <% @listings.each do |listing| %>
-
-  <div class="listing-container">
-    <p><strong><%= listing.title %></strong></p>
-    <p><%= listing.description %></p>
-    <p>Host: <%= listing.host %></p>
-  </div>
-
+  <%= render "/listings/detail", listing: listing %>
 <% end %>
 
