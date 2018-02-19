@@ -1,7 +1,5 @@
 <h3>Create new listing</h3>
 
 <%= form_for @listing, url: {action: "create"} do |f| %>
-  <p>Title: <%= f.text_field :title  %></p>
-  <p>Description: <%= f.text_field :description %></p>
-  <p><%= f.submit "Add your listing!"%></p>
+  <%= render partial: '/listings/form' %>
 <% end %>
