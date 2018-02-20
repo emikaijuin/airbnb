@@ -2,6 +2,7 @@ class Listing < ActiveRecord::Base
   
   acts_as_bookable time_type: :range, bookable_across_occurrences: true
   
+  has_many :keyword_listings
   has_many :keywords, through: :keyword_listings
   
     def is_available?(start_date, end_date)
@@ -42,6 +43,23 @@ class Listing < ActiveRecord::Base
       else
         User.find(self.user_id).first_name
       end
+    end
+    
+    def property_type
+      
+      property = Hash.new
+      
+      subtype_id = Property.find(self.property_id).property_subtype_id
+      type_id = Property.find(self.property_id).property_type_id
+      
+      subtype = PropertySubtype.find(subtype_id).subtype
+      type = PropertyType.find(type_id).property 
+      
+      property[:subtype] = subtype
+      property[:type] = type
+      
+      property
+      
     end
     
 end

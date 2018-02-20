@@ -1,5 +1,7 @@
+ <% listing_type = listing.property_type %>
   <div class="listing-container">
     <p><strong><%= listing.title %></strong></p>
+    <p><%= listing_type[:subtype]%></p>
     <p><%= listing.description %></p>
     <p>Host: <%= listing.host %></p>
 

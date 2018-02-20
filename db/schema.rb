@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220050400) do
+ActiveRecord::Schema.define(version: 20180220105005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20180220050400) do
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
   create_table "keyword_listings", force: :cascade do |t|
+    t.integer "keyword_id"
+    t.integer "listing_id"
   end
 
   create_table "keywords", force: :cascade do |t|
@@ -62,12 +64,16 @@ ActiveRecord::Schema.define(version: 20180220050400) do
     t.string  "title"
     t.string  "description"
     t.integer "user_id"
-    t.integer "property_type_id"
-    t.integer "property_subtype_id"
-    t.string  "dates",               default: [], array: true
+    t.string  "dates",       default: [], array: true
     t.text    "schedule"
     t.string  "city"
     t.string  "country"
+    t.integer "property_id"
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.integer "property_type_id"
+    t.integer "property_subtype_id"
   end
 
   create_table "property_subtypes", force: :cascade do |t|
@@ -75,7 +81,7 @@ ActiveRecord::Schema.define(version: 20180220050400) do
   end
 
   create_table "property_types", force: :cascade do |t|
-    t.string "type"
+    t.string "property"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -107,8 +113,7 @@ ActiveRecord::Schema.define(version: 20180220050400) do
 
   add_foreign_key "amenities", "listings"
   add_foreign_key "authentications", "users"
-  add_foreign_key "listings", "property_subtypes"
-  add_foreign_key "listings", "property_types"
+  add_foreign_key "listings", "properties"
   add_foreign_key "listings", "users"
   add_foreign_key "reviews", "listings"
   add_foreign_key "reviews", "users"
