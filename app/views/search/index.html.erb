@@ -1,0 +1,20 @@
+Search results:
+
+<% if @results[:exact_match]%>
+  <div>
+    <% @results[:exact_match].each_with_index do |result, index| %>
+      <%= render '/search/results', result: result, index: index %>
+    <% end %>
+  </div>  
+<% elsif @results[:partial_match] %>
+  <div>
+    We don't seem to have any listings there, check out some great properties at similar locations...
+    <% @results[:partial_match].each_with_index do |result, index| %>
+      <%= render '/search/results', result: result, index: index %>
+    <% end %>
+  </div>  
+<% else %>
+  <div>
+    Sorry, we didn't find any results in that location 
+  </div>
+<% end %>

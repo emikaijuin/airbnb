@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220041831) do
+ActiveRecord::Schema.define(version: 20180220050400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 20180220041831) do
     t.integer "property_subtype_id"
     t.string  "dates",               default: [], array: true
     t.text    "schedule"
+    t.string  "city"
+    t.string  "country"
   end
 
   create_table "property_subtypes", force: :cascade do |t|
