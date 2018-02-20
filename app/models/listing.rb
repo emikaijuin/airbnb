@@ -45,4 +45,21 @@ class Listing < ActiveRecord::Base
       end
     end
     
+    def property_type
+      
+      property = Hash.new
+      
+      subtype_id = PropertySubtypePropertyType.find(self.property_subtype_property_type_id).property_subtype_id
+      type_id = PropertySubtypePropertyType.find(self.property_subtype_property_type_id).property_type_id
+      
+      subtype = PropertySubtype.find(subtype_id).subtype
+      type = PropertyType.find(type_id).property 
+      
+      property[:subtype] = subtype
+      property[:type] = type
+      
+      property
+      
+    end
+    
 end
