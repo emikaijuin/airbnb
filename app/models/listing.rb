@@ -58,7 +58,7 @@ class Listing < ActiveRecord::Base
       property[:subtype] = subtype
       property[:type] = type
       
-      property
+      property 
       
     end
     
