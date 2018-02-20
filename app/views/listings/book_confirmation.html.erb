@@ -1,0 +1,10 @@
+<div id="booking-confirmation">
+    <p>Check-in: <%= session[:start_date] %></p>
+    <p>Check-out: <%= session[:end_date] %></p>
+    <p>Listing: <%= current_listing.title %></p>
+    
+    <p>Everything look good? 
+    <%= form_tag "/listings/#{current_listing.id}/book_success", :method => :post do %>
+    <%= submit_tag("Confirm booking") %>
+    <% end %></p>
+</div>

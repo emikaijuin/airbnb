@@ -1,0 +1,17 @@
+<h4>Booking Page</h4>
+
+
+<!--IMPLEMENT AJAX IN NEXT VERSION-->
+<%= form_tag "/listings/#{current_listing.id}/book_check", :method => :get do %> 
+  <p>
+    Check-in date: 
+    <%= date_field_tag 'start_date' %>
+  </p>
+  
+  <p>
+    Check-out date:
+    <%= date_field_tag 'end_date' %>
+  </p>
+  
+  <%= submit_tag("Check availability") %>
+<% end %>
