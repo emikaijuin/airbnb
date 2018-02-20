@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220092609) do
+ActiveRecord::Schema.define(version: 20180220094109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,12 +64,11 @@ ActiveRecord::Schema.define(version: 20180220092609) do
     t.string  "title"
     t.string  "description"
     t.integer "user_id"
-    t.integer "property_type_id"
-    t.integer "property_subtype_id"
-    t.string  "dates",               default: [], array: true
+    t.string  "dates",                             default: [], array: true
     t.text    "schedule"
     t.string  "city"
     t.string  "country"
+    t.integer "property_subtype_property_type_id"
   end
 
   create_table "property_subtype_property_types", force: :cascade do |t|
@@ -114,8 +113,7 @@ ActiveRecord::Schema.define(version: 20180220092609) do
 
   add_foreign_key "amenities", "listings"
   add_foreign_key "authentications", "users"
-  add_foreign_key "listings", "property_subtypes"
-  add_foreign_key "listings", "property_types"
+  add_foreign_key "listings", "property_subtype_property_types"
   add_foreign_key "listings", "users"
   add_foreign_key "reviews", "listings"
   add_foreign_key "reviews", "users"
