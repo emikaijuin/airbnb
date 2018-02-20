@@ -5,6 +5,9 @@ source 'https://rubygems.org'
 
 gem 'clearance'
 
+gem 'acts_as_bookable'
+
+
 # Postgresql version downgraded to be compatible with ActiveRecord
 gem 'pg', '~>0.18.0'
 
