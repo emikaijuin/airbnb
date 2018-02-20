@@ -20,6 +20,14 @@ Rails.application.routes.draw do
   root 'welcome#index'
   
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+  
+  get '/listings/:id/book' => 'listings#book', as: :book
+  
+  get '/listings/:id/book_confirmation' => 'listings#book_confirmation', as: :book_confirmation
+  
+  get '/listings/:id/book_check' => 'listings#book_check'
+  
+  post '/listings/:id/book_success' => 'listings#book_success'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
