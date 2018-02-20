@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214092852) do
+ActiveRecord::Schema.define(version: 20180220041831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "acts_as_bookable_bookings", force: :cascade do |t|
+    t.integer  "bookable_id"
+    t.string   "bookable_type"
+    t.integer  "booker_id"
+    t.string   "booker_type"
+    t.integer  "amount"
+    t.text     "schedule"
+    t.datetime "time_start"
+    t.datetime "time_end"
+    t.datetime "time"
+    t.datetime "created_at"
+    t.string   "confirmation_number"
+  end
+
+  add_index "acts_as_bookable_bookings", ["bookable_type", "bookable_id"], name: "index_acts_as_bookable_bookings_bookable", using: :btree
+  add_index "acts_as_bookable_bookings", ["booker_type", "booker_id"], name: "index_acts_as_bookable_bookings_booker", using: :btree
 
   create_table "amenities", force: :cascade do |t|
     t.boolean "wifi"
@@ -47,7 +64,8 @@ ActiveRecord::Schema.define(version: 20180214092852) do
     t.integer "user_id"
     t.integer "property_type_id"
     t.integer "property_subtype_id"
-    t.date    "dates"
+    t.string  "dates",               default: [], array: true
+    t.text    "schedule"
   end
 
   create_table "property_subtypes", force: :cascade do |t|
