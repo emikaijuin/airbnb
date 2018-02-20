@@ -6,4 +6,10 @@
     <% if url_for(:only_path => true) == "/listings" %>
      <%= link_to "View more", listing_path(listing.id) %>
     <% end %>
+    
+    <% if signed_in? %>
+      <%= link_to "Book this property!", book_path(listing.id) %>
+    <% else %>
+      <span>Log in above to book this property!</span>
+    <% end %>
   </div>
