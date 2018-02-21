@@ -9,9 +9,9 @@
        <%= link_to "View more", listing_path(listing.id) %>
       <% end %>
       
-      <% if signed_in? %>
+      <% if signed_in? && (current_user.id == listing.user_id || current_user.superadmin?) %>
+        <%= link_to "Edit this listing", edit_listing_path(listing.id) %>
+      <% elsif signed_in? %>
         <%= link_to "Book this property!", book_path(listing.id) %>
-      <% else %>
-        <span>Log in above to book this property!</span>
       <% end %>
     </div>

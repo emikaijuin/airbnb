@@ -1,12 +1,11 @@
 class Listing < ActiveRecord::Base
-  
+
   acts_as_bookable time_type: :range, bookable_across_occurrences: true
   
   has_many :keyword_listings
   has_many :keywords, through: :keyword_listings
   
     def is_available?(start_date, end_date)
-      # Can only book one year ahead of time
       max_bookable_date = Date.today >> (12)
       
       if start_date.to_date < Date.today || end_date.to_date > max_bookable_date

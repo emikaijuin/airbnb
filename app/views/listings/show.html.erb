@@ -1,4 +1,5 @@
-<% listing = current_listing %>
-<%= render "/listings/detail", listing: listing %>
-
-<%= link_to "View all", listings_path %>
+<div class="buffer"> 
+  <% listing = current_listing %>
+  <%= render "/listings/detail", listing: listing %>
+  <%= link_to "View all", listings_path %>
+</div>
