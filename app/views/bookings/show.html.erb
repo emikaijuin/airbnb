@@ -2,7 +2,7 @@
 
 
 <!--IMPLEMENT AJAX IN NEXT VERSION-->
-<%= form_tag "/listings/#{current_listing.id}/book_check", :method => :get do %> 
+<%= form_tag book_check_path(current_listing.id), :method => :get do %> 
   <p>
     Check-in date: 
     <%= date_field_tag 'start_date' %>
