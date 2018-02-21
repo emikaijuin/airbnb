@@ -7,6 +7,8 @@ gem 'clearance'
 
 gem 'acts_as_bookable'
 
+gem "bulma-rails", "~> 0.6.2"
+
 
 # Postgresql version downgraded to be compatible with ActiveRecord
 gem 'pg', '~>0.18.0'
@@ -20,8 +22,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 
 gem 'heroku'
-
-gem 'byebug'
 
 ############################################################################
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
