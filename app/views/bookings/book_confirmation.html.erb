@@ -4,7 +4,7 @@
     <p>Listing: <%= current_listing.title %></p>
     
     <p>Everything look good? 
-    <%= form_tag "/listings/#{current_listing.id}/book_success", :method => :post do %>
+    <%= form_tag :action => "book_success", :method => :post do %>
     <%= submit_tag("Confirm booking") %>
     <% end %></p>
 </div>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :listings
   resources :search, controller: "search", only: [:index]
+  resources :bookings, controller: "bookings"
   
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
@@ -22,13 +23,13 @@ Rails.application.routes.draw do
   
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   
-  get '/listings/:id/book' => 'listings#book', as: :book
+  get '/bookings/:id' => 'bookings#book', as: :book
   
-  get '/listings/:id/book_confirmation' => 'listings#book_confirmation', as: :book_confirmation
+  get '/bookings/:id/book_confirmation' => 'bookings#book_confirmation', as: :book_confirmation
   
-  get '/listings/:id/book_check' => 'listings#book_check'
+  get '/bookings/:id/book_check' => 'bookings#book_check', as: :book_check
   
-  post '/listings/:id/book_success' => 'listings#book_success'
+  post '/bookings/:id/book_success' => 'bookings#book_success'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
