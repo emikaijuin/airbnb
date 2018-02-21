@@ -2,9 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.listing-container {
+div.listing {
   border: 1px solid black;
-  margin: 2em auto;
-  padding: 1em;
-  width: 50%;
+  width: 30%;
+  padding: 2em 1em;
+  margin: 1%;
+  float: left;
+}
+
+div#map {
+  padding: 0;
+  height: 100%;
+  position: fixed;
+  margin: 0;
+}
+
+.buffer {
 }
