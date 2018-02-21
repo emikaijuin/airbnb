@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
-<body>
+<body class="has-navbar-fixed-top">
+  
   <!--FACEBOOK SDK-->
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
@@ -18,15 +23,63 @@
   </script>
   <!--FACEBOOK SDK-->
   
-  <!--SIGN UP/LOG IN/SIGN OUT-->
-  <div id="header">
-    <% if signed_in? -%>
-      <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-    <% else -%>
-      <%= link_to t(".sign_in"), sign_in_path %>
-    <% end -%>
+  <nav class="navbar is-fixed-top has-navbar-fixed-bottom" role="navigation" aria-label="main navigation">
+    
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/"><i class="fab fa-dribbble fa-2x airbnb-brand"></i></a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    
+    <div class="navbar-menu">
+      <div class="navbar-start">
+        <div class="navbar-item" id="search-form">
+          <div class="field has-addons">
+            <%= form_tag("/search", :method => :get) do %>
+              <div class="control has-icons-right">
+                <%= text_field_tag 'search_form', nil, placeholder: 'Miami, FL', class: 'input' %>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-search fa-lg"></i>
+                </span>
+              </div>
+              <!--<div class="control">-->
+                  <!--<a class="button is-info">Search</a>-->
+              <!--    <%#= submit_tag "Search", class: "button is-danger" %>-->
+              <!--</div>-->
+            <% end %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="navbar-end">
+        
+        <div class="navbar-item" id="profile">
+          <% if signed_in? %>
+            <%= link_to "View Profile", "/users/show" %>
+          <% end %>
+        </div>
+        
+        <div class="navbar-item" id="sign-out-button">
+          <% if signed_in? -%>
+            <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
+          <% else -%>
+            <%= link_to t(".sign_in"), sign_in_path %>
+          <% end -%>
+        </div>
+        
+      </div>
   </div>
-  <!--SIGN UP/LOG IN/SIGN OUT-->
+  <div class="navbar" id="filters-bar">
+    <span class="button is-outlined is-danger is-small">Dates</span>
+    <span class="button is-outlined is-danger is-small">Guests</span>
+    <span class="button is-outlined is-danger is-small">Home Type</span>
+  </div>
+</nav>
+
+
 
 
   <div id="flash">
@@ -35,23 +88,7 @@
     <% end %>
   </div>
   
-  <div id="profile">
-    <% if signed_in? %>
-      <%= link_to "View Profile", "/users/show" %>
-    <% end %>
-  </div>
-  
-  <div>
-    <%= link_to "Home", root_url %>
-  </div>
-  
-  <div id="search-form">
-    <%= form_tag("/search", :method => :get) do %>
-      <%= text_field_tag 'search_form', nil, placeholder: 'Miami, FL' %>
-      <%= submit_tag("Search") %>
-    <% end %>
-  </div>
-  
   <%= yield %>
+  <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
 </body>
 </html>
