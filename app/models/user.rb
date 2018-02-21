@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   include Clearance::User
-  
   acts_as_booker
+  
+  enum role: [:customer, :moderator, :superadmin]
   
   has_many :authentications, dependent: :destroy
   
