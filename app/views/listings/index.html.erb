@@ -1,8 +1,8 @@
-<h3>Viewing all listings</h3>
+<div class="column is-three-fifths buffer">
+  <% @listings.each do |listing| %>
+    <%= render "/listings/detail", listing: listing %>
+  <% end %>
+</div>
 
-<%= signed_in? ? (link_to "Add a new listing!", "/listings/new") : (link_to "Sign in to add a listing!", "/sign_in") %>
-
-<% @listings.each do |listing| %>
-  <%= render "/listings/detail", listing: listing %>
-<% end %>
+<div class="column is-two-fifths buffer" id="map"></div>
 

@@ -1,17 +1,17 @@
  <% listing_type = listing.property_type %>
-  <div class="listing-container">
-    <p><strong><%= listing.title %></strong></p>
-    <p><%= listing_type[:subtype]%></p>
-    <p><%= listing.description %></p>
-    <p>Host: <%= listing.host %></p>
-
-    <% if url_for(:only_path => true) == "/listings" %>
-     <%= link_to "View more", listing_path(listing.id) %>
-    <% end %>
-    
-    <% if signed_in? %>
-      <%= link_to "Book this property!", book_path(listing.id) %>
-    <% else %>
-      <span>Log in above to book this property!</span>
-    <% end %>
-  </div>
+    <div class="listing">
+      <p class="title"><%= listing.title %></p>
+      <p><%= listing_type[:subtype]%></p>
+      <p><%= listing.description %></p>
+      <p>Host: <%= listing.host %></p>
+  
+      <% if url_for(:only_path => true) == "/listings" %>
+       <%= link_to "View more", listing_path(listing.id) %>
+      <% end %>
+      
+      <% if signed_in? %>
+        <%= link_to "Book this property!", book_path(listing.id) %>
+      <% else %>
+        <span>Log in above to book this property!</span>
+      <% end %>
+    </div>
