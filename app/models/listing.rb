@@ -6,6 +6,14 @@ class Listing < ActiveRecord::Base
   has_many :keywords, through: :keyword_listings
   belongs_to :user
   
+    def total_price
+      self.price * booking_length
+    end
+    
+    def booking_length
+    end_date.to_date - start_date.to_date
+    end
+    
     def date_range(start_date, end_date)
       (start_date..end_date).map(&:to_s)
     end
