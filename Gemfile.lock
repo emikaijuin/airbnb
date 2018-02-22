@@ -45,6 +45,8 @@ GEM
     bcrypt (3.1.11)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
+    braintree (2.83.0)
+      builder (>= 2.0.0)
     builder (3.2.3)
     bulma-rails (0.6.2)
       sass (~> 3.2)
@@ -217,6 +219,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   acts_as_bookable
+  braintree
   bulma-rails (~> 0.6.2)
   byebug
   clearance
