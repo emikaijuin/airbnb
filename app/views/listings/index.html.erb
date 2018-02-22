@@ -1,7 +1,9 @@
-<div class="column is-three-fifths buffer">
-  <% @listings.each do |listing| %>
-    <%= render "/listings/detail", listing: listing %>
-  <% end %>
+<div class="column is-two-thirds">
+  <div id="listings-container">
+    <% @listings.each do |listing| %>
+      <%= render "/listings/detail", listing: listing %>
+    <% end %>
+  </div>
 </div>
 
 <div class="column is-two-fifths buffer" id="map"></div>
