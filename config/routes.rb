@@ -25,11 +25,13 @@ Rails.application.routes.draw do
   
   get '/bookings/:id' => 'bookings#book', as: :book
   
-  get '/bookings/:id/book_confirmation' => 'bookings#book_confirmation', as: :book_confirmation
+  get '/bookings/:id/dates_confirmation' => 'bookings#dates_confirmation', as: :dates_confirmation
   
   get '/bookings/:id/book_check' => 'bookings#book_check', as: :book_check
   
-  post '/bookings/:id/book_success' => 'bookings#book_success'
+  get '/bookings/:id/book_confirmation' => 'bookings#book_confirmation', as: :book_confirmation
+  
+  post '/bookings/:id/book_finalization' => 'bookings#book_finalization', as: :book_finalization
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
