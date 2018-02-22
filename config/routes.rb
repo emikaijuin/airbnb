@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'braintree/new'
-  post 'braintree/checkout'
-
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
@@ -20,6 +17,10 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
 
   root 'welcome#index'
+  
+  get '/bookings/:id/payment_details'=> "bookings#payment_details", as: :payment_details
+  
+  post '/bookings/:id/checkout' => 'bookings#checkout'
   
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   
