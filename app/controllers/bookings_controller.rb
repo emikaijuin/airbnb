@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
   def show
   end
   
-  def book_confirmation
+  def dates_confirmation
     @user = current_user
   end
   
@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
     end 
   end
   
-  def book_success
+  def book_finalization
     current_user.book! current_listing, time_start: session[:start_date].to_date, time_end: session[:end_date].to_date
     current_listing.reserve_dates(session[:start_date], session[:end_date])
     @booking = current_user.bookings.last
