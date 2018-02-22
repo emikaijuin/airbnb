@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'braintree/new'
-  post 'braintree/checkout'
-
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
@@ -21,15 +18,21 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   
+  get '/bookings/:id/payment_details'=> "bookings#payment_details", as: :payment_details
+  
+  post '/bookings/:id/checkout' => 'bookings#checkout'
+  
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   
   get '/bookings/:id' => 'bookings#book', as: :book
   
-  get '/bookings/:id/book_confirmation' => 'bookings#book_confirmation', as: :book_confirmation
+  get '/bookings/:id/dates_confirmation' => 'bookings#dates_confirmation', as: :dates_confirmation
   
   get '/bookings/:id/book_check' => 'bookings#book_check', as: :book_check
   
-  post '/bookings/:id/book_success' => 'bookings#book_success'
+  get '/bookings/:id/book_confirmation' => 'bookings#book_confirmation', as: :book_confirmation
+  
+  post '/bookings/:id/book_finalization' => 'bookings#book_finalization', as: :book_finalization
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

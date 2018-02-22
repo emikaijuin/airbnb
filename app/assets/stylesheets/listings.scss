@@ -20,6 +20,10 @@ img.listing-image {
   div.listing {
     flex-basis: 48%
   }
+  
+  div#show-container {
+    width: 70% !important;
+  }
 }
 
 @media (max-width: 700px) {
@@ -30,6 +34,10 @@ img.listing-image {
   
   div#map {
     display: none;
+  }
+  
+  div#show-container {
+    width: 95%;
   }
 }
 
@@ -76,11 +84,10 @@ p.listing-additional-info {
 }
 
 div#listing-show-page {
-  width: 40%;
 }
 
 div#gallery-container {
-  height: 40%;
+  height: 45%;
   width: 100%;
   overflow-y: hidden;
 }
@@ -99,4 +106,67 @@ div#gallery img {
 
 div#hide-scroll {
   padding-bottom: 15px;
+}
+
+div#booking-form {
+  border: 1px solid gainsboro;
+  padding: 0.5em 2em 1em 2em;
+}
+
+div#show-container {
+  width: 40%;
+  margin: auto;
+}
+
+.booking-input {
+  width: 100%;
+}
+
+#property-title {
+  line-height: 85%;
+  margin-bottom: 0;
+}
+
+#property-description {
+  font-size: 80%;
+  font-weight: 700;
+}
+
+#property-type {
+  font-weight: 300;
+}
+
+#rating {
+  color: #008489 !important;
+  font-size: 50%;
+}
+
+.hor-rule {
+  width: 100%;
+  margin: auto;
+  color: gainsboro;
+}
+
+#booking-button {
+  width: 100%;
+  height: 3em;
+  color: white;
+  background-color: #FF5A5F !important;
+}
+// input[type="date"]::-webkit-calendar-picker-indicator,
+// input[type="date"]::-webkit-inner-spin-button{
+//     display: none;
+// }
+
+#price {
+  font-weight: 800;
+  font-size: 150%;
+}
+
+#price-per {
+  font-weight: 700;
+  font-size: 70%;
+}
+
+#price-info {
 }

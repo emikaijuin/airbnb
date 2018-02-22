@@ -4,6 +4,19 @@ class Listing < ActiveRecord::Base
   
   has_many :keyword_listings
   has_many :keywords, through: :keyword_listings
+  belongs_to :user
+  
+    def total_price(start_date, end_date)
+      (self.price.to_i * booking_length(start_date, end_date)).to_i
+    end
+    
+    def booking_length(start_date, end_date)
+      end_date.to_date - start_date.to_date
+    end
+    
+    def date_range(start_date, end_date)
+      (start_date..end_date).map(&:to_s)
+    end
   
     def is_available?(start_date, end_date)
       max_bookable_date = Date.today >> (12)
@@ -17,7 +30,7 @@ class Listing < ActiveRecord::Base
       elsif self.dates.length == 0
         return true
       else
-        range = (start_date..end_date).map(&:to_s)
+        range = date_range(start_date, end_date)
         range.each do |date|
           date = date.to_date.strftime # Issue in different formats- converting to date then back to string gets all dates to same format
           if self.dates.include?(date)
@@ -29,7 +42,7 @@ class Listing < ActiveRecord::Base
     end
     
     def reserve_dates(start_date, end_date)
-      range = (start_date..end_date).map(&:to_s)
+      range = date_range(start_date, end_date)
       range.each do |date|
         self.dates << date
       end
