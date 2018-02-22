@@ -5,8 +5,8 @@
       </div>
       
       <div class="listing-text-content">
-        <p class="listing-title"><%= listing.title %></p>
         <p class="listing-additional-info"><%= listing_type[:subtype]%></p>
+        <p class="listing-title"><%= listing.title %></p>
         <% if url_for(:only_path => true) == "/listings" %>
          <%= link_to "View more", listing_path(listing.id) %>
         <% end %>
