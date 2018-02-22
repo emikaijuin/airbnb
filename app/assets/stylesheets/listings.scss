@@ -3,16 +3,100 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 div.listing {
-  border: 1px solid black;
-  width: 30%;
-  padding: 2em 1em;
-  margin: 1%;
-  float: left;
+  margin: 0 0.125em;
+  height: 100%;
+  clear: both;
+  flex-basis: 32%;
+  flex-shrink: 1;
+  position: relative;
+  margin-bottom: 0.25em;
+}
+
+img.listing-image {
+  min-height: 100%;
+}
+
+@media (max-width: 1300px) {
+  div.listing {
+    flex-basis: 48%
+  }
+}
+
+@media (max-width: 700px) {
+  div.listing {
+    flex-basis: 100%;
+    width: 100%;
+  }
+  
+  div#map {
+    display: none;
+  }
+}
+
+div#listings-container {
+  margin-top: 1em;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 div#map {
-  padding: 0;
   height: 100%;
-  position: fixed;
-  margin: 0;
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  width: 33%;
+}
+
+div.listing-image-content {
+  top: 0;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+div.listing-text-content {
+  display: inline-block;
+  font-size: 90%;
+  text-align: left;
+  line-height: 95%;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+p.listing-title {
+  font-size: 110%;
+  font-weight: 700;
+}
+
+p.listing-additional-info {
+  font-weight: 200;
+}
+
+div#listing-show-page {
+  width: 40%;
+}
+
+div#gallery-container {
+  height: 40%;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+div#gallery {
+  height: 105%;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+div#gallery img {
+  white-space: nowrap;
+  height: 100%;
+}
+
+div#hide-scroll {
+  padding-bottom: 15px;
 }

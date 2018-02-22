@@ -1,5 +1,31 @@
-<div class="buffer"> 
-  <% listing = current_listing %>
-  <%= render "/listings/detail", listing: listing %>
+ <% listing_type = current_listing.property_type %>
+
+  <div id="gallery-container">
+    <div id="gallery">
+      <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
+      <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
+      <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
+      <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
+      <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
+      <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
+      <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
+      <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
+    </div>
+  </div>
+
+<div id="listing-show-page"> 
+      <div class="listing-text-content">
+        <p class="listing-title"><%= current_listing.title %></p>
+        <p class="listing-additional-info"><%= listing_type[:subtype]%></p>
+        <% if url_for(:only_path => true) == "/listings" %>
+         <%= link_to "View more", listing_path(listing.id) %>
+        <% end %>
+        
+        <% if signed_in? && (current_user.id == current_listing.user_id || current_user.superadmin?) %>
+          <p><%= link_to "Edit this listing", edit_listing_path(listing.id) %></p>
+        <% elsif signed_in? %>
+          <p><%= link_to "Book this property!", book_path(current_listing.id) %></p>
+        <% end %>
+      </div>
   <%= link_to "View all", listings_path %>
 </div>

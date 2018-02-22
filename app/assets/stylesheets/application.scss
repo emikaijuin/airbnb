@@ -17,9 +17,9 @@
 @import "bulma";
 
 body, html {
-  font-family: "Cabin";
+  font-family: "Raleway";
   height: 100%;
-  padding-top: 5em;
+  padding-top: 3em;
 }
 
 .airbnb-brand {
@@ -41,5 +41,9 @@ body, html {
 }
 
 #filters-bar > span {
-  margin: 0 0.25em;
+  margin: 0 0.5em;
+}
+
+#search-form {
+  padding-left: 0;
 }
