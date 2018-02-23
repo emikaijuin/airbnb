@@ -37,13 +37,18 @@ class BookingsController < ApplicationController
     if current_user.book! current_listing, time_start: session[:end_date].to_date, time_end: session[:end_date].to_date
       current_listing.reserve_dates(session[:start_date],session[:end_date])
       @booking = current_user.bookings.last
-      @booking.confirmation_number = SecureRandom.hex(6)
-      @booking.save
-    else
-      flash[:notice] = "Oops, we weren't able to save this booking. Try again in a few minutes."
+      @booking.confirmation_number = SecureRandom.hex(5)
+      
+        if @booking.save
+          ReservationJob.perform_later(current_user, @booking.confirmation_number)
+          flash[:notice] = "Booking confirmed!"
+        else
+          flash[:notice] = "Looks like something went wrong, try again in a few minutes."
+          redirect_to dates_confirmation_path(current_listing.id)
+        end
     end
   end
-  
+
   private
   
   def require_permission

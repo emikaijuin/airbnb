@@ -11,11 +11,12 @@ class Listing < ActiveRecord::Base
     end
     def rating
       rating = 0
-      total_reviews.each do |review|
-        rating += review.rating
+      if total_reviews.count > 0
+        total_reviews.each do |review|
+          rating += review.rating
+        end
+        rating = rating / total_reviews.count
       end
-      
-      rating = rating / total_reviews.count
     end
     
     def total_price(start_date, end_date)
