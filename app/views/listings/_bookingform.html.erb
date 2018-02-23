@@ -1,7 +1,12 @@
 <!--IMPLEMENT AJAX IN NEXT VERSION-->
 <div id="booking-form">
   <p id="price-info"><span id="price">$<%=current_listing.price%></span> <span id="price-per">per night</span></p>
-  <p id="rating"><% current_listing.rating.times do %><i class="fas fa-star"></i><% end %></p>
+  <p>
+    <span  class="rating">
+      <% current_listing.rating.times do %><i class="fas fa-star"></i><% end %>
+    </span>
+    <span id="review-count"><sub><%= current_listing.total_reviews.count %> Reviews</sub></span>
+  </p>
   <br>
   <hr class="hor-rule">
   <br>
@@ -21,10 +26,13 @@
       </div>
     </div>
     
+    <div id="booking-dates-error-notice"><%= flash[:booking_error] %></div>
+    
     <br>
     
     <div class="control">
       <%= submit_tag "Request to Book", :class => 'button', :id => 'booking-button' %>
     </div>
+    <p class="form-footer">You won't be charged yet</p>
   <% end %>
 </div>
