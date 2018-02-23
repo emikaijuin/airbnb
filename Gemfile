@@ -26,6 +26,10 @@ gem 'braintree'
 
 gem 'sidekiq'
 
+gem 'rails_12factor'
+
+gem 'foreman'
+
 ############################################################################
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
