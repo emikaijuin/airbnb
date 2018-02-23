@@ -40,13 +40,11 @@ class BookingsController < ApplicationController
       @booking.confirmation_number = SecureRandom.hex(5)
       
         if @booking.save
-          ReservationMailer.customer_booking_email(current_user, @booking.confirmation_number).deliver_now
+          ReservationJob.perform_later(current_user, @booking.confirmation_number)
           flash[:notice] = "Booking confirmed!"
-          redirect_to root_url
-          
         else
           flash[:notice] = "Looks like something went wrong, try again in a few minutes."
-          redirect_to root_url
+          redirect_to dates_confirmation_path(current_listing.id)
         end
     end
   end
