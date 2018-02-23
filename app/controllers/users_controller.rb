@@ -1,4 +1,6 @@
 class UsersController < Clearance::UsersController
+  
+  before_action :require_permission except: [:user_from_params]
     
  def user_from_params
     name = user_params.delete(:name)
@@ -16,5 +18,15 @@ class UsersController < Clearance::UsersController
   
   def show
   end
+  
+  private
+  
+  def require_permission
+    if !signed_in?
+      flash[:notice] = "Log in or sign up to get started!"
+      redirect_to root
+    end
+  end
+      
   
 end
