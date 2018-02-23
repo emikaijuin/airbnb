@@ -6,7 +6,7 @@ class ReservationMailer < ApplicationMailer
     @customer = customer
     @booking = ActsAsBookableBooking.find_by(confirmation_number: booking_confirmation)
     @listing = Listing.find(@booking.bookable_id)
-    mail(to: "emikaijuin@gmail.com", subject: "You're going to #{@listing.city}")
+    mail(to: "ijuinairbnb@gmail.com", subject: "You're going to #{@listing.city}")
   end
   
 end
