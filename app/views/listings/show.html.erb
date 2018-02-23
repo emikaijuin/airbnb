@@ -6,26 +6,64 @@
       <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
       <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
       <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
-      <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
-      <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
-      <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
-      <img src="https://images.unsplash.com/photo-1492889971304-ac16ab4a4a5a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058c56771e5c8d1f9adf38dc794f6e0e&auto=format&fit=crop&w=2553&q=80"></img>
     </div>
   </div>
   
 <div id="show-container" class="columns">
-  <div class="column is two-thirds">
+  <div class="column is-three-fifths">
     <div id="listing-show-page"> 
       <p id="property-description">ENTIRE HOUSE</p>
       <p class="title" id="property-title"><%= current_listing.title %></p>
       <p id="property-type"><%= listing_type[:subtype]%> (<%=listing_type[:type]%>)</p>
-      <% if url_for(:only_path => true) == "/listings" %>
-       <%= link_to "View more", listing_path(listing.id) %>
-      <% end %>
-      
       <% if signed_in? && (current_user.id == current_listing.user_id || current_user.superadmin?) %>
         <p><%= link_to "Edit this listing", edit_listing_path(current_listing.id) %></p>
       <% end %>
+      <div id="listing-icons">
+        <span><i class="fas fa-users"></i> <%=current_listing.guests%> guests</span>
+        <span><i class="fas fa-lightbulb"></i> <%=current_listing.bedrooms%> bedrooms</span>
+        <span><i class="fas fa-bed"></i> <%=current_listing.beds%> beds</span>
+        <span><i class="fas fa-shower"></i> <%=current_listing.bathrooms%> bathrooms</span>
+      </div>
+      
+      <div>
+        <%= current_listing.description %>
+      </div>
+      
+      <br>
+      
+      <hr>
+      
+      <div>
+        <div id="review-header">
+          <strong><%= current_listing.total_reviews.count %> Reviews </strong>
+          <span class="rating"><% current_listing.rating.times do %><i class="fas fa-star"></i><% end %></span>
+        </div>
+        <% current_listing.total_reviews.each do |review| %>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg">
+              </figure>
+            </div>
+            
+            <div class="media-content">
+              <p class="review-name"><%= review.user.first_name %></p>
+              <p class="review-date">February 2018</p>
+            </div>    
+          </div>
+          
+          <br>
+          
+          <div class="content">
+            <%= review.text %>
+          </div>
+          
+        </div>
+        <hr class="hor-rule">
+        <% end %>
+      </div>
+      
     </div>
   </div>
   
