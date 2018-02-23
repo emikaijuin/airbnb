@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :listings
   resources :search, controller: "search", only: [:index]
-  resources :bookings, controller: "bookings"
+  # resources :bookings, controller: "bookings"
   
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   
-  get '/bookings/:id' => 'bookings#book', as: :book
+  # get '/bookings/:id' => 'bookings#book', as: :book
   
   get '/bookings/:id/dates_confirmation' => 'bookings#dates_confirmation', as: :dates_confirmation
   

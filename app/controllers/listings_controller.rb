@@ -41,16 +41,23 @@ class ListingsController < ApplicationController
     @listing = current_listing
   end
   
-  def require_permission
-    if current_user.id != current_listing.user_id
-      flash[:notice] = "Oops, is this where you meant to go?"
-      redirect_to listing_path(current_listing.id)
-    end
-  end
-  
   private
   
   def listing_params
     params.require(:listing).permit(:title, :description, :dates)
+  end
+  
+  def require_permission
+    if !signed_in?
+      flash[:notice] = "Oops, is this where you meant to go?"
+      if params[:id]
+        redirect_to listing_path
+      else
+        redirect_to listings_path
+      end
+    elsif current_user != current_listing.user
+      flash[:notice] = "Oops, is this where you meant to go?"
+      redirect_to listing_path
+    end
   end
 end

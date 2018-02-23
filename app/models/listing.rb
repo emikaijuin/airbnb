@@ -6,6 +6,18 @@ class Listing < ActiveRecord::Base
   has_many :keywords, through: :keyword_listings
   belongs_to :user
   
+    def total_reviews
+      Review.where(listing_id: self.id)
+    end
+    def rating
+      rating = 0
+      total_reviews.each do |review|
+        rating += review.rating
+      end
+      
+      rating = rating / total_reviews.count
+    end
+    
     def total_price(start_date, end_date)
       (self.price.to_i * booking_length(start_date, end_date)).to_i
     end
@@ -15,29 +27,32 @@ class Listing < ActiveRecord::Base
     end
     
     def date_range(start_date, end_date)
-      (start_date..end_date).map(&:to_s)
+      (start_date.to_date..end_date.to_date).map(&:to_s)
+    end
+    
+    def update_listing_schedule
+      current_listing.schedule = IceCube::Schedule.new(Date.today, duration: 365.days)
+      current_listing.save
+    end
+    
+    def date_within_bookable_range?(start_date, end_date)
+      update_listing_schedule
+      date_range(start_date, end_date).each do |date|
+        if !current_listing.schedule.include?(date)
+          false
+        end
+      end
+      true
     end
   
     def is_available?(start_date, end_date)
-      max_bookable_date = Date.today >> (12)
-      
-      if start_date.to_date < Date.today || end_date.to_date > max_bookable_date
-        return false
-        # add error message
-      elsif start_date.to_date >= end_date.to_date
-        return false
-        # add error message
-      elsif self.dates.length == 0
-        return true
-      else
-        range = date_range(start_date, end_date)
-        range.each do |date|
-          date = date.to_date.strftime # Issue in different formats- converting to date then back to string gets all dates to same format
-          if self.dates.include?(date)
-            return false
-          end
+      range = date_range(start_date, end_date)
+      range.each do |date|
+        date = date.to_date.strftime # Issue in different formats- converting to date then back to string gets all dates to same format
+        if self.dates.include?(date)
+          return false
         end
-        return true
+      true
       end
     end
     

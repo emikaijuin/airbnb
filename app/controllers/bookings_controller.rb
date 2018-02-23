@@ -1,6 +1,8 @@
 class BookingsController < ApplicationController
   include ApplicationHelper
   
+  before_action :require_permission, except: [:dates_confirmation]
+  
   def payment_details
     @client_token = Braintree::ClientToken.generate
   end
@@ -26,8 +28,8 @@ class BookingsController < ApplicationController
       session[:start_date] = params[:start_date]
       session[:end_date] = params[:end_date]
     else
-      flash[:notice] = "Sorry - some of your dates weren't available."
-      redirect_to book_path
+      flash[:booking_error] = "Sorry - some of your dates weren't available."
+      redirect_to listing_path
     end 
   end
   
@@ -42,5 +44,12 @@ class BookingsController < ApplicationController
     end
   end
   
+  private
+  
+  def require_permission
+    if !signed_in?
+      flash[:notice] = "Log in to book!"
+    end
+  end
   
 end
