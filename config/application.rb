@@ -24,5 +24,6 @@ module Workspace
     config.active_record.raise_in_transactional_callbacks = true
     
     config.active_job.queue_adapter = :sidekiq
+    config.active_job.reservation = Rails.env
   end
 end
