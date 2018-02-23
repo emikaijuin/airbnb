@@ -3,7 +3,11 @@
   <p id="price-info"><span id="price">$<%=current_listing.price%></span> <span id="price-per">per night</span></p>
   <p>
     <span  class="rating">
-      <% current_listing.rating.times do %><i class="fas fa-star"></i><% end %>
+      <% if current_listing.rating != (nil || 0) %>
+        <% current_listing.rating.times do %>
+          <i class="fas fa-star"></i>
+        <% end %>
+      <% end %>
     </span>
     <span id="review-count"><sub><%= current_listing.total_reviews.count %> Reviews</sub></span>
   </p>
