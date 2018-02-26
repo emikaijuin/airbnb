@@ -1,3 +1,32 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h2.landing-header {
+  font-size: 150%;
+  font-weight: 700;
+}
+
+div.tiles-container {
+  width: 50%;
+  padding-left: 1em;
+}
+
+@media (max-width: 1600px) {
+  div.tiles-container{
+    width: 100%;
+  }
+}
+
+div.listing-tiles {
+  border: 1px solid gainsboro;
+}
+
+div.listing-tiles > div, div.listing-tiles > img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+div.listing-tiles > div {
+  padding-left: 1em;
+}
