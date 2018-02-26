@@ -24,7 +24,7 @@ class UsersController < Clearance::UsersController
   def require_permission
     if !signed_in?
       flash[:notice] = "Log in or sign up to get started!"
-      redirect_to root
+      redirect_to root_url
     end
   end
       
