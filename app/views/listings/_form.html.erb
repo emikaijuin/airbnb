@@ -1,3 +1,5 @@
-<p>Title: <%= f.text_field :title  %></p>
-<p>Description: <%= f.text_field :description %></p>
-<p><%= f.submit "Submit"%></p>
+<%= form_for @listing, url: {action: "create"} do |f| %>
+  <p>Title: <%= f.text_field :title  %></p>
+  <p>Description: <%= f.text_field :description %></p>
+  <p><%= f.submit "Submit"%></p>  
+<% end %>
