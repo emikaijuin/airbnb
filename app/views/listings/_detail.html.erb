@@ -13,8 +13,6 @@
         
         <% if signed_in? && (current_user.id == listing.user_id || current_user.superadmin?) %>
           <p><%= link_to "Edit this listing", edit_listing_path(listing.id) %></p>
-        <% elsif signed_in? %>
-          <p><%= link_to "Book this property!", book_path(listing.id) %></p>
         <% end %>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <h3>Create new listing</h3>
 
 <%= form_for @listing, url: {action: "create"} do |f| %>
-  <%= render partial: '/listings/form' %>
+  <%= render partial: '/listings/form', f: f %>
 <% end %>
