@@ -1,6 +1,6 @@
 class UsersController < Clearance::UsersController
   
-  before_action :require_permission, except: [:user_from_params]
+  before_action :require_permission, only: [:edit, :show]
     
  def user_from_params
     name = user_params.delete(:name)
