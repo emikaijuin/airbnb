@@ -25,7 +25,7 @@ function myMap() {
 var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 }
 
-$(document).ready(function(){
+$(document).on("turbolinks:load", function(){
     var calendarButton = document.getElementById('booking-button')
     calendarButton.addEventListener("click", function(evt){
       var startdate = new Date($('#start_date').val().replace(/\-/g,'/')),
