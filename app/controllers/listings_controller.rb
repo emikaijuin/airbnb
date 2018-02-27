@@ -1,11 +1,15 @@
 class ListingsController < ApplicationController
+  include ListingsHelper
   include ApplicationHelper
   
   before_action :set_listing, only: [:edit, :show, :book]
   before_action :require_permission, only: [:edit, :create]
 
   def index
-    @listings = Listing.all
+    @listings = Listing.where(nil)
+    filtering_params(params).each do |k, v|
+      @listings = @listings.public_send(k, v) if v.present?
+    end
   end
   
   def new
@@ -46,6 +50,8 @@ class ListingsController < ApplicationController
   def show
   end
   
+  private
+  
   def set_listing
     @listing = current_listing
   end
@@ -59,6 +65,7 @@ class ListingsController < ApplicationController
   def set_schedule(end_date)
     IceCube::Schedule.new(Date.today, duration: (end_date.to_date - Date.today).to_i.days)
   end
+  
   
   def require_permission
     if !signed_in?
@@ -75,4 +82,9 @@ class ListingsController < ApplicationController
       end
     end
   end
+  
+  def filtering_params(params)
+    params.slice(:city, :price, :guests, :bedrooms, :bathrooms)
+  end
+  
 end
