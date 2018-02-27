@@ -1,14 +1,24 @@
 class Listing < ActiveRecord::Base
-
+  
   acts_as_bookable time_type: :range, bookable_across_occurrences: true
+  
+  # include PgSearch
+  # multisearchable :against => [ :city, :country, :guests, :beds, :bedrooms, :bathrooms, :property_type, :property_subtype ]
   
   has_many :keyword_listings
   has_many :keywords, through: :keyword_listings
   belongs_to :user
   
+  scope :city, -> (city) { where( city: city )}
+  scope :price, -> (price) { where ( "price < #{price} ")}
+  scope :guests, -> (guests) { where ( "guests >= #{guests} ")}
+  scope :bedrooms, -> (bedrooms) { where ( "bedrooms >= #{bedrooms}" )}
+  scope :bathrooms, -> (bathrooms) { where ("bathrooms >= #{bathrooms}")} 
+    
     def total_reviews
       Review.where(listing_id: self.id)
     end
+    
     def rating
       rating = 0
       if total_reviews.count > 0
