@@ -2,6 +2,7 @@
 # ===== Listings ===== #
 #======================#
 
+ActiveRecord::Base.Transaction do
 listings = {
   1 => {title: "House on Lake Lanier", 
         description: "Beautiful house on the lake with large backyard, perfect for families looking for a weekend getaway. Volleyball court, basketball hoop, and sailboat.",
@@ -116,14 +117,15 @@ Nam pretium non mi nec porttitor. Sed massa dolor, vestibulum non eros vel, iacu
 }
 
 i = 1
-check = []
 until i == listings.length + 1 do
   listing = listings[i]
-  check << Listing.new(title: listing[:title], description: listing[:description], user_id: listing[:user_id], dates: [], schedule: IceCube::Schedule.new(Date.today, duration: 365.days), city: listing[:city], country: listing[:country], property_id: listing[:property_id], price: listing[:price], rating: listing[:rating], guests: listing[:guests], bedrooms: listing[:bedrooms], beds: listing[:beds], bathrooms: listing[:bathrooms])
+  Listing.create(title: listing[:title], description: listing[:description], user_id: listing[:user_id], dates: [], schedule: IceCube::Schedule.new(Date.today, duration: 365.days), city: listing[:city], country: listing[:country], property_id: listing[:property_id], price: listing[:price], rating: listing[:rating], guests: listing[:guests], bedrooms: listing[:bedrooms], beds: listing[:beds], bathrooms: listing[:bathrooms])
   i += 1
 end
+
+end 
+
+# Property Subtypes:
   
-  #Property Subtypes:
-  
-  subtypes = ["Apartment", "Casa Particular", "Loft", "Serviced Apartment", "Bed and Breakfast", "Farm Stay", "Pousada", "Boutique Hotel", "Aparthotel", "Condohotel", "Hostel", "Hotel", "Nature Lodge", "Resort", "House", "Bungalow", "Cabin", "Chalet", "Cottage", "Cycladic House", "Dammuso", "Dome House", "Earth House", "Houseboat", "Hut", "Lighthouse", "Pousada", "Shepherd's Hut", "Tiny House", "Townhouse", "Trullo", "Villa", "Guesthouse", "Guest Suite", "Barn", "Boat", "Camper/RV", "Campsite", "Castle", "Cave", "Earth House", "Houseboat", "Hut", "Igloo", "Island", "Lighthouse", "Plane", "Tent", "Tipi", "Train"] 
+# subtypes = ["Apartment", "Casa Particular", "Loft", "Serviced Apartment", "Bed and Breakfast", "Farm Stay", "Pousada", "Boutique Hotel", "Aparthotel", "Condohotel", "Hostel", "Hotel", "Nature Lodge", "Resort", "House", "Bungalow", "Cabin", "Chalet", "Cottage", "Cycladic House", "Dammuso", "Dome House", "Earth House", "Houseboat", "Hut", "Lighthouse", "Pousada", "Shepherd's Hut", "Tiny House", "Townhouse", "Trullo", "Villa", "Guesthouse", "Guest Suite", "Barn", "Boat", "Camper/RV", "Campsite", "Castle", "Cave", "Earth House", "Houseboat", "Hut", "Igloo", "Island", "Lighthouse", "Plane", "Tent", "Tipi", "Train"] 
   
