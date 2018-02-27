@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#filters-bar {
+  position: fixed;
+  border-bottom: 1px solid gainsboro;
+  border-top: 1px solid gainsboro;
+  padding: 0.5em;
+  top: 4%;
+  width: 100%;
+}
+
+#filters-bar > span {
+  margin: 0 0.5em;
+}
 div.listing {
   margin: 0 0.125em;
   height: 100%;
