@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222094944) do
+ActiveRecord::Schema.define(version: 20180227043006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20180222094944) do
     t.string  "country"
     t.integer "property_id"
     t.integer "price"
-    t.integer "rating"
+    t.integer "rating",      default: 0
     t.integer "guests"
     t.integer "bedrooms"
     t.integer "beds"

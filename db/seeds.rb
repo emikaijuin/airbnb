@@ -123,4 +123,7 @@ until i == listings.length + 1 do
   i += 1
 end
   
+  #Property Subtypes:
+  
+  subtypes = ["Apartment", "Casa Particular", "Loft", "Serviced Apartment", "Bed and Breakfast", "Farm Stay", "Pousada", "Boutique Hotel", "Aparthotel", "Condohotel", "Hostel", "Hotel", "Nature Lodge", "Resort", "House", "Bungalow", "Cabin", "Chalet", "Cottage", "Cycladic House", "Dammuso", "Dome House", "Earth House", "Houseboat", "Hut", "Lighthouse", "Pousada", "Shepherd's Hut", "Tiny House", "Townhouse", "Trullo", "Villa", "Guesthouse", "Guest Suite", "Barn", "Boat", "Camper/RV", "Campsite", "Castle", "Cave", "Earth House", "Houseboat", "Hut", "Igloo", "Island", "Lighthouse", "Plane", "Tent", "Tipi", "Train"] 
   
