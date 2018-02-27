@@ -10,18 +10,27 @@ class ListingsController < ApplicationController
   
   def new
     @listing = Listing.new
-    
     # List all DBs that will be required to show available options for new listing.
     @property_types = PropertyType.all
     @property_subtypes = PropertySubtype.all
     @amenities = Amenity.all
     @safety_amenities = SafetyAmenity.all
+    
   end
   
   def create
     @listing = Listing.new(listing_params)
-    @listing.save
-    redirect_to listings_path
+    @listing.schedule = IceCube::Schedule.new(Date.today, duration: 365.days)
+    @listing.user_id = current_user.id
+    @listing.property_id = 6
+ 
+    if @listing.save
+      flash[:notice] = "Listing added"
+      redirect_to listing_path(@listing.id)
+    else
+      flash[:notice] = "Something went wrong- try again"
+      redirect_to listings_path
+    end
   end
   
   def destroy
@@ -44,7 +53,11 @@ class ListingsController < ApplicationController
   private
   
   def listing_params
-    params.require(:listing).permit(:title, :description, :dates)
+    params.require(:listing).permit(:title, :description, :city, :country, :price, :guests, :beds, :bedrooms, :bathrooms)
+  end
+  
+  def set_schedule(end_date)
+    IceCube::Schedule.new(Date.today, duration: (end_date.to_date - Date.today).to_i.days)
   end
   
   def require_permission
@@ -55,9 +68,11 @@ class ListingsController < ApplicationController
       else
         redirect_to listings_path
       end
-    elsif current_user != current_listing.user
-      flash[:notice] = "Oops, is this where you meant to go?"
-      redirect_to listing_path
+    elsif params[:id]
+      if current_user != current_listing.user
+        flash[:notice] = "Oops, is this where you meant to go?"
+        redirect_to listing_path
+      end
     end
   end
 end
