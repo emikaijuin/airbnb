@@ -37,7 +37,7 @@
         <div id="review-header">
           <strong><%= current_listing.total_reviews.count %> Reviews </strong>
           <span class="rating">      
-            <% if current_listing.rating != nil  %>
+            <% if current_listing.rating > 0  %>
               <% current_listing.rating.times do %>
                 <i class="fas fa-star"></i>
               <% end %>
