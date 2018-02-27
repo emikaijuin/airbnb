@@ -37,9 +37,12 @@
         <div id="review-header">
           <strong><%= current_listing.total_reviews.count %> Reviews </strong>
           <span class="rating">      
+            <% p current_listing.rating %>
             <% if current_listing.rating > 0  %>
               <% current_listing.rating.times do %>
                 <i class="fas fa-star"></i>
+            <% else %>
+                No reviews yet, be the first to book.
               <% end %>
             <% end %>
           </span>
