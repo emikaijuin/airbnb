@@ -2,8 +2,9 @@ class Listing < ActiveRecord::Base
   
   acts_as_bookable time_type: :range, bookable_across_occurrences: true
   
-  # include PgSearch
-  # multisearchable :against => [ :city, :country, :guests, :beds, :bedrooms, :bathrooms, :property_type, :property_subtype ]
+  require 'pg_search'
+  include PgSearch
+  multisearchable :against => [ :title, :description, :city, :country ]
   
   has_many :keyword_listings
   has_many :keywords, through: :keyword_listings
