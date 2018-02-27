@@ -1,5 +1,24 @@
 <%= form_for @listing, url: {action: "create"} do |f| %>
+
+<div id = "new-listing-1">
   <p>Title: <%= f.text_field :title  %></p>
-  <p>Description: <%= f.text_field :description %></p>
+  <p>Description: <%= f.text_area :description %></p>
+</div>    
+<div id = "new-listing-2">
+  <p>City: <%= f.text_field :city %></p>
+  <p>Country: <%= f.text_field :country %></p>
+</div>
+<div id = "new-listing-3">
+  <p>Price: <%= f.text_field :price %></p>
+</div>
+<div id = "new-listing-4">
+</div>
+<div id ="new-listing-5">
+  <p>Guests: <%= f.text_field :guests %></p>
+  <p>Beds: <%= f.text_field :beds %></p>
+  <p>Bedrooms: <%= f.text_field :bedrooms %></p>
+  <p>Bathrooms: <%= f.text_field :bathrooms %></p>
+</div>
+
   <p><%= f.submit "Submit"%></p>  
 <% end %>
