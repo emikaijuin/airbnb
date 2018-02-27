@@ -72,11 +72,9 @@
         
       </div>
   </div>
-  <div class="navbar" id="filters-bar">
-    <span class="button is-outlined is-small">Dates</span>
-    <span class="button is-outlined is-small">Guests</span>
-    <span class="button is-outlined is-small">Home Type</span>
-  </div>
+  <% if url_for(:only_path => true) == "/listings" %>
+    <%= render "/layouts/filtersbar" %>
+  <% end %>
 </nav>
 
 
