@@ -1,3 +1,5 @@
+// Index Page
+
 function myMap() {
     var mapOptions = {
         center: new google.maps.LatLng(51.5, -0.12),
