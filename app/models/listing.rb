@@ -1,6 +1,8 @@
 class Listing < ActiveRecord::Base
-  
+
   acts_as_bookable time_type: :range, bookable_across_occurrences: true
+  
+  mount_uploaders :photos, PhotoUploader
   
   require 'pg_search'
   include PgSearch
@@ -17,10 +19,8 @@ class Listing < ActiveRecord::Base
   scope :bathrooms, -> (bathrooms) { where ("bathrooms >= ?" " #{bathrooms}")} 
     
     def self.search_cities(query)
-      found_results = []
-      where("city ILIKE :city", city: "%#{query}%").map do |record|
-        # found_results << record.city
-        record.city if !found_results.include?(record.city)
+      where("city ILIKE :city", city: "%#{query}%").distinct.map do |record|
+        record.city
       end
     end
     

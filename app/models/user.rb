@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
   include Clearance::User
-  acts_as_booker
-  
-  enum role: [:customer, :moderator, :superadmin]
   
   has_many :authentications, dependent: :destroy
+  acts_as_booker # Give model permission to make bookings through Bookable gem
+  mount_uploader :avatar, AvatarUploader # Create uploader
+  enum role: [:customer, :moderator, :superadmin]
   
     def self.create_with_auth_and_hash(authentication, auth_hash)
       user = self.create!(
