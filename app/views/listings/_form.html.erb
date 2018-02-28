@@ -19,6 +19,9 @@
   <p>Bedrooms: <%= f.text_field :bedrooms %></p>
   <p>Bathrooms: <%= f.text_field :bathrooms %></p>
 </div>
+<div>
+  <%= f.file_field :photos, :multiple => true %>
+</div>
 
   <p><%= f.submit "Submit"%></p>  
 <% end %>
