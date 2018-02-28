@@ -51,6 +51,10 @@ GEM
     bulma-rails (0.6.2)
       sass (~> 3.2)
     byebug (10.0.0)
+    carrierwave (1.2.2)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     clearance (1.16.1)
       bcrypt
       email_validator (~> 1.4)
@@ -240,6 +244,7 @@ DEPENDENCIES
   braintree
   bulma-rails (~> 0.6.2)
   byebug
+  carrierwave (~> 1.0)
   clearance
   coffee-rails (~> 4.1.0)
   figaro
