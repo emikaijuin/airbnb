@@ -10,11 +10,11 @@ class Listing < ActiveRecord::Base
   has_many :keywords, through: :keyword_listings
   belongs_to :user
   
-  scope :city, -> (city) { where( city: city )}
-  scope :price, -> (price) { where ( "price < #{price} ")}
-  scope :guests, -> (guests) { where ( "guests >= #{guests} ")}
-  scope :bedrooms, -> (bedrooms) { where ( "bedrooms >= #{bedrooms}" )}
-  scope :bathrooms, -> (bathrooms) { where ("bathrooms >= #{bathrooms}")} 
+  scope :city, -> (city) { where( "city ILIKE :city", city: "%#{city}%" )}
+  scope :price, -> (price) { where ( "price < ?" " #{price} ")}
+  scope :guests, -> (guests) { where ( "guests >= ?" " #{guests} ")}
+  scope :bedrooms, -> (bedrooms) { where ( "bedrooms >= ?" " #{bedrooms}" )}
+  scope :bathrooms, -> (bathrooms) { where ("bathrooms >= ?" " #{bathrooms}")} 
     
     def self.search_cities(query)
       found_results = []
