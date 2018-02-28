@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   
+  post '/search' => 'search#search'
+  
   get '/bookings/:id/payment_details'=> "bookings#payment_details", as: :payment_details
   
   post '/bookings/:id/checkout' => 'bookings#checkout'
