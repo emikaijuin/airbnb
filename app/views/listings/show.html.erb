@@ -2,7 +2,7 @@
  
   <div id="gallery-container">
     <div id="gallery">
-      <% if @listing.photos %>
+      <% if @listing.photos.present? %>
         <% @listing.photos.each do |img| %>
           <%= image_tag(img.url) %>
         <% end %> 
