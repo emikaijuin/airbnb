@@ -23,6 +23,10 @@ class ListingsController < ApplicationController
   end
   
   def create
+    
+    puts "!!!!!!!!!!!!"
+    puts listing_params
+    
     @listing = Listing.new(listing_params)
     @listing.schedule = IceCube::Schedule.new(Date.today, duration: 365.days)
     @listing.user_id = current_user.id
@@ -57,7 +61,7 @@ class ListingsController < ApplicationController
   end
   
   def listing_params
-    params.require(:listing).permit(:title, :description, :city, :country, :price, :guests, :beds, :bedrooms, :bathrooms)
+    params.require(:listing).permit(:title, :description, :city, :country, :price, :guests, :beds, :bedrooms, :bathrooms, {photos: []})
   end
   
   def set_schedule(end_date)
