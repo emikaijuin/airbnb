@@ -16,6 +16,14 @@ class Listing < ActiveRecord::Base
   scope :bedrooms, -> (bedrooms) { where ( "bedrooms >= #{bedrooms}" )}
   scope :bathrooms, -> (bathrooms) { where ("bathrooms >= #{bathrooms}")} 
     
+    def self.search_cities(query)
+      found_results = []
+      where("city ILIKE :city", city: "%#{query}%").map do |record|
+        # found_results << record.city
+        record.city if !found_results.include?(record.city)
+      end
+    end
+    
     def total_reviews
       Review.where(listing_id: self.id)
     end
