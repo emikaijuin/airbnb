@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227060643) do
+ActiveRecord::Schema.define(version: 20180228074222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,11 @@ ActiveRecord::Schema.define(version: 20180227060643) do
 
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
+  create_table "avatar_uploaders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "keyword_listings", force: :cascade do |t|
     t.integer "keyword_id"
     t.integer "listing_id"
@@ -75,6 +80,7 @@ ActiveRecord::Schema.define(version: 20180227060643) do
     t.integer "bedrooms"
     t.integer "beds"
     t.integer "bathrooms"
+    t.json    "photos"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -123,6 +129,7 @@ ActiveRecord::Schema.define(version: 20180227060643) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "role",                           default: 0
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
