@@ -1,3 +1,4 @@
 <h3>Create new listing</h3>
-
-<%= render partial: '/listings/form' %>
+<%= form_for @listing, url: {action: "create"} do |f| %>
+  <%= render partial: '/listings/form', f: f %>
+<% end %>
