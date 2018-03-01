@@ -2,7 +2,7 @@ class ListingsController < ApplicationController
   include ListingsHelper
   include ApplicationHelper
   
-  before_action :set_listing, only: [:edit, :show, :book]
+  before_action :set_listing, only: [:edit, :show, :book, :update]
   before_action :require_permission, only: [:edit, :create]
 
   def index
@@ -23,10 +23,6 @@ class ListingsController < ApplicationController
   end
   
   def create
-    
-    puts "!!!!!!!!!!!!"
-    puts listing_params
-    
     @listing = Listing.new(listing_params)
     @listing.schedule = IceCube::Schedule.new(Date.today, duration: 365.days)
     @listing.user_id = current_user.id
@@ -48,13 +44,25 @@ class ListingsController < ApplicationController
   end
   
   def update
-    redirect_to listing_path(params[:id])
+    puts "!!!!!!!!!!!!!"
+    puts listing_params
+    
+    add_more_images(listing_params[:photos])
+    @listing.update_attributes(listing_params)
+    @listing.save
+    redirect_to listing_path(@listing.id)
   end
   
   def show
   end
   
   private
+  
+  def add_more_images(new_images)
+    photos = @listing.photos
+    photos += new_images
+    @listing.photos = photos
+  end
   
   def set_listing
     @listing = current_listing
