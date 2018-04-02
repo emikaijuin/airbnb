@@ -31,6 +31,8 @@ gem 'rails_12factor'
 gem 'pg_search'
 
 gem 'carrierwave', '~> 1.0'
+
+gem 'fog-aws'
 ############################################################################
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

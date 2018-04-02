@@ -3,7 +3,7 @@ class Listing < ActiveRecord::Base
   acts_as_bookable time_type: :range, bookable_across_occurrences: true
   
   mount_uploaders :photos, PhotoUploader
-  
+
   require 'pg_search'
   include PgSearch
   multisearchable :against => [ :title, :description, :city, :country ]
