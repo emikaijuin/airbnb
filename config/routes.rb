@@ -35,6 +35,10 @@ Rails.application.routes.draw do
   get '/bookings/:id/book_confirmation' => 'bookings#book_confirmation', as: :book_confirmation
   
   post '/bookings/:id/book_finalization' => 'bookings#book_finalization', as: :book_finalization
+  
+  # AJAX ROUTES
+  
+  post 'listings/:id/delete_photo' => 'listings#delete_photo'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
