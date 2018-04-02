@@ -53,6 +53,12 @@ class ListingsController < ApplicationController
     redirect_to listing_path(@listing.id)
   end
   
+  def delete_photo(index)
+    @listing = Listing.find(params[:id])
+    @listing.photos[index].delete
+    @listing.save
+  end
+  
   def show
   end
   
