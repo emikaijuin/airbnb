@@ -3,8 +3,8 @@
   <div id="gallery-container">
     <i class="fas fa-plus" id="icon-add-photos"></i>
     <div id="gallery">
-      <% if @listing.photos.present? %>
-        <% @listing.photos.each_with_index do |img, index| %>
+      <% if @listing.listing_images.present? %>
+        <% @listing.listing_images.each_with_index do |img, index| %>
           <div class="image-container" index="<%=index%>">
             <%= image_tag(img.url, :class => "listing-image", :index => "#{index}") %>
             <i class="fas fa-trash-alt bottom-left"></i>
