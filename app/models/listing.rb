@@ -2,14 +2,16 @@ class Listing < ActiveRecord::Base
 
   acts_as_bookable time_type: :range, bookable_across_occurrences: true
   
-  mount_uploaders :photos, PhotoUploader
-
+  # mount_uploaders :photos, PhotoUploader
+  
   require 'pg_search'
   include PgSearch
   multisearchable :against => [ :title, :description, :city, :country ]
   
   has_many :keyword_listings
   has_many :keywords, through: :keyword_listings
+  has_many :listing_images
+  accepts_nested_attributes_for :listing_images
   belongs_to :user
   
   scope :city, -> (city) { where( "city ILIKE :city", city: "%#{city}%" )}

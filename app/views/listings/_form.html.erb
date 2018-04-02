@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+<%= form_for(@listing, url: {action: "create"}, html: { :multipart => true }) do |f| %>
+=======
+>>>>>>> 4c9ebd12185de74b8b832b26dd2e8dc14090dc16
 
 <div id = "new-listing-1">
   <p>Title: <%= f.text_field :title  %></p>
@@ -19,10 +23,10 @@
   <p>Bathrooms: <%= f.text_field :bathrooms %></p>
 </div>
 <div>
-  <% if url_for(:only_path => true) == "/listings/#{@listing.id}/edit" %>
-    <p>Add more photos: </p>
+  <%= f.fields_for :listing_images do |i| %>
+    <%= i.label :images %><br>
+    <%= i.file_field :photo, :multiple => true, name: "listing_images[image][]" %>
   <% end %>
-  <p><%= f.file_field :photos, :multiple => true %></p>
 </div>
 
   <p><%= f.submit "Submit"%></p>  

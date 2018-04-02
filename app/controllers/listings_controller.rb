@@ -20,6 +20,8 @@ class ListingsController < ApplicationController
     @amenities = Amenity.all
     @safety_amenities = SafetyAmenity.all
     
+    @listing_images = @listing.listing_images.build
+    
   end
   
   def create
@@ -29,6 +31,9 @@ class ListingsController < ApplicationController
     @listing.property_id = 6
  
     if @listing.save
+      params[:listing_images]['image'].each do |image|
+        @listing_image = @listing.listing_images.create!(:image => image)
+      end
       flash[:notice] = "Listing added"
       redirect_to listing_path(@listing.id)
     else
@@ -60,6 +65,7 @@ class ListingsController < ApplicationController
   end
   
   def show
+    @listing_images = @listing.listing_images.all
   end
   
   private
@@ -69,7 +75,8 @@ class ListingsController < ApplicationController
   end
   
   def listing_params
-    params.require(:listing).permit(:title, :description, :city, :country, :price, :guests, :beds, :bedrooms, :bathrooms, {photos: []})
+    # params.require(:listing).permit(:title, :description, :city, :country, :price, :guests, :beds, :bedrooms, :bathrooms, {photos: []})
+    params.require(:listing).permit(:title, :description, :city, :country, :price, :guests, :beds, :bedrooms, :bathrooms, listing_images_attributes: [:id, :listing_id, :image])
   end
   
   def set_schedule(end_date)
