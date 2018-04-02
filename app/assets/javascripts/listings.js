@@ -24,6 +24,21 @@ $(document).on("turbolinks:load", function(){
         addBookingErrorNotice(evt, "Please pick a valid date range")
       }
     })
+    
+    $('.bottom-left').click(function(e){
+      var result = confirm("Are you sure you want to delete this image?")
+      if (result) {
+        $.ajax({
+          url: `/listings/${params.id}/delete_photo`,
+          method: "POST",
+          data: $(this).index,
+          success: function(){
+            $(this).parent().remove()
+          }
+        })
+      }
+    })
+
 })
 
 function addBookingErrorNotice(evt, message) {
