@@ -46,13 +46,16 @@ class ListingsController < ApplicationController
   end
   
   def edit
+    
   end
   
   def update
-    add_more_images(listing_params[:photos])
-    @listing.update_attributes(listing_params)
-    @listing.save
-    redirect_to listing_path(@listing.id)
+    photos = @listing.photos
+    @listing.assign_attributes(listing_params)
+    @listing.photos += photos
+    if @listing.save
+      redirect_to listing_path(@listing.id)
+    end
   end
   
   def delete_photo(index)
@@ -66,12 +69,6 @@ class ListingsController < ApplicationController
   end
   
   private
-  
-  def add_more_images(new_images)
-    photos = @listing.photos
-    photos += new_images
-    @listing.photos = photos
-  end
   
   def set_listing
     @listing = current_listing
